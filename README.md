@@ -71,12 +71,6 @@ The server will start Running on
 + http://localhost:3000/
 
 
-## Author
-
-| Author                | Profile Link                                       |
-| --------------------- | :------------------------------------------------- |
-| **Vishnu Swaroop** | **www.vishnuswaroop.live** |
-
 
 ## Acknowledgments
 
@@ -86,5 +80,5 @@ The server will start Running on
 <br><br>
 
 <p align="center">
-  Made with ❤️ by vishnu
+  Made with ❤️ by ishant
 </p>
