@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>GAIVI - Grocery Delivery App</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+
+        let addToCart = button => {
+            let s = {
+                "price": button.getAttribute('data-PRICE'),
+                "product": button.getAttribute('data-product')
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/cart',
+                data: s,
+                dataType: "json",
+                success: function (response) {
+
+                    setTimeout(function () {
+                        document.getElementById("check").innerHTML = "";
+                    }, 3000);
+                    if (response.Success == "Success!") {
+                        console.log("yes")
+                    };
+                },
+                error: function () {
+                }
+            })
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="right-phone-box">
+                        <p>Call US :- +91 8247490377</a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="https://goo.gl/maps/7XULkGCcwCBfqcue8"><i class="fas fa-location-arrow"></i>
+                                    Our location</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: GAIVI20
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> 50% - 80% off on Utensils
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop Fruits
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> 50% - 80% off on Fruits
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: GAIVI30
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.jpg" style="width: 50px"
+                            class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="/shop">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="side-menu">
+                            <a href="/cart">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">3</span>
+                                <p>My Cart</p>
+                            </a>
+                        </li>
+                        <li class="aba side-menu">
+                            <a href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-center">
+                <img src="images/banner-01.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> GAIVI</strong></h1>
+                            <p class="m-b-40"> The best online grocery store in India<br> GAIVI is an online supermarket
+                                for all your daily needs. Online shopping now made easy with a wide range of items</p>
+                            <p><a class="btn hvr-hover" href="/shop">Shop New</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="images/banner1.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="images/banner-02.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> GAIVI</strong></h1>
+                            <p class="m-b-40"> The best online grocery store in India<br> GAIVI is an online supermarket
+                                for all your daily needs. Online shopping now made easy with a wide range of items</p>
+                            <p><a class="btn hvr-hover" href="/shop">Shop New</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="images/banner3.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="images/banner-03.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> GAIVI</strong></h1>
+                            <p class="m-b-40"> The best online grocery store in India<br> GAIVI is an online supermarket
+                                for all your daily needs. Online shopping now made easy with a wide range of items</p>
+                            <p><a class="btn hvr-hover" href="/shop">Shop New</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="images/m2.jpg" alt="">
+                <div class="container">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- End Slider -->
+
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="images/fresh-veggs-fnvStorefront_m_250922_275x184_03.jpg" alt="" />
+                        <a class="btn hvr-hover" href="/shop">Vegetables</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="images/soft-drinks-beveragesStorefront_m_250722_560x378_01.jpg"
+                            alt="" />
+                        <a class="btn hvr-hover" href="/shop">Beverages</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="images/biscuits-cookies-snacksStorefront_m_480_250922_04 (1).jpg"
+                            alt="" />
+                        <a class="btn hvr-hover" href="/shop">Snacks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Categories -->
+
+    <div class="box-add-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="images/add-img-01.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="images/add-img-02.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Products  -->
+    <div class="products-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Fruits & Vegetables</h1>
+                        <p>Fresh Stock Available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">All</button>
+                            <button data-filter=".top-featured">Top featured</button>
+                            <button data-filter=".best-seller">Best seller</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row special-list">
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix a">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Sale</p>
+                            </div>
+                            <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
+                                </ul>
+                                <button class="carrots btn hvr-hover" data-price="50" data-product="Carrots(Per KG)"
+                                    onclick="addToCart(this);"> Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Carrots</h4>
+                            <h5> Rs 50/KG</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                    <div class="products-single fix a">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="new">New</p>
+                            </div>
+                            <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
+                                </ul>
+                                <button class="Tomaetos btn hvr-hover" data-price="25" data-product="Tomatoes(per KG)"
+                                    onclick="addToCart(this);"> Add to Cart </button>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>Tomatoes</h4>
+                            <h5> Rs 25/KG</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                    <div class="products-single fix a">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Sale</p>
+                            </div>
+                            <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
+
+                                </ul>
+                                <button class="Grapes btn hvr-hover" data-price="40" data-product="Grapes(per KG)"
+                                    onclick="addToCart(this);"> Add to Cart </button>
+                            </div>
+                            <div class="why-text">
+                                <h4>Grapes</h4>
+                                <h5> Rs 40/KG</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="sale">Sale</p>
+                                </div>
+                                <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="Papaya btn hvr-hover" data-price="20" data-product="Papaya(per piece)"
+                                        onclick="addToCart(this);"> Add to Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Papaya</h4>
+                                <h5> Rs 20/Piece</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Products  -->
+        <div class="products-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-all text-center">
+                            <h1>Beverages</h1>
+                            <p>All types of drinks Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="special-menu text-center">
+                            <div class="button-group filter-button-group">
+                                <button class="active" data-filter="*">Drinks</button>
+                                <button data-filter=".soft-drinks">Soft Drinks</button>
+                                <button data-filter=".top-featured">Energy Drinks</button>
+                                <button data-filter=".best-seller">Health Drinks</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row special-list">
+                    <div class="col-lg-3 col-md-6 special-grid soft-drinks ">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="sale">Sale</p>
+                                </div>
+                                <img src="images/coca-cola-coke-zero-soft-drink-no-sugar.jpg" class="img-fluid"
+                                    alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+                                    </ul>
+                                    <button class="Coke btn hvr-hover" data-price="50" data-product="Cococola TIN"
+                                        onclick="addToCart(this);"> Add to Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Cococola TIN</h4>
+                                <h5>Rs 50</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 special-grid soft-drinks">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="new">New</p>
+                                </div>
+                                <img src="images/sprite-soft-drink-lime-flavoured.jpg" class="img-fluid" alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="Sprite btn hvr-hover" data-price="50" data-product="Sprite Bottle"
+                                        onclick="addToCart(this);"> Add to Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Sprite Bottle </h4>
+                                <h5> RS 50 </h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="sale">Sale</p>
+                                </div>
+                                <img src="images/tropicana-fruit-juice-delight-orange.jpg" class="img-fluid"
+                                    alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="Tropicana btn hvr-hover" data-price="30"
+                                        data-product="Tropicana fresh drink(per pack)" onclick="addToCart(this);"> Add
+                                        to Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Tropicana fresh drink</h4>
+                                <h5> Rs 30/Pack</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 special-grid top-featured">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="sale">Sale</p>
+                                </div>
+                                <img src="images/red-bull-energy-drink.jpg" class="img-fluid" alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="redbull btn hvr-hover" data-price="110"
+                                        data-product="Redbull Energy Drink(per tin)" onclick="addToCart(this);"> Add to
+                                        Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Redbull Energy Drink</h4>
+                                <h5> Rs 110/tin</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-6 special-grid top-featured">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="new">New</p>
+                                </div>
+                                <img src="images/monster-energy-drink.jpg" class="img-fluid" alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="monster btn hvr-hover" data-price="105" data-product="Monster Drink(per tin)"
+                                        onclick="addToCart(this);"> Add to Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Monster Drink </h4>
+                                <h5> RS 105/tin </h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                        <div class="products-single fix a">
+                            <div class="box-img-hover">
+                                <div class="type-lb">
+                                    <p class="sale">Sale</p>
+                                </div>
+                                <img src="images/real-fruit-power-juice-masala-mixed-fruit.jpg" class="img-fluid"
+                                    alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a href="/shop" data-toggle="tooltip" data-placement="right" title="View"><i
+                                                    class="fas fa-eye"></i></a></li>
+
+                                    </ul>
+                                    <button class="real btn hvr-hover" data-price="20"
+                                        data-product="Real Mixed Fruit(per pack)" onclick="addToCart(this);"> Add to
+                                        Cart </button>
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4>Real Mixed Fruit</h4>
+                                <h5> Rs 20/Pack</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="title-all text-center">
+                                <h1>Cleaning & Household</h1>
+                                <p>All types of items are Available</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="special-menu text-center">
+                                <div class="button-group filter-button-group">
+                                    <button class="active" data-filter="*">All</button>
+                                    <button data-filter=".soft-drinks"> Cleaners and Disinfectants</button>
+                                    <button data-filter=".best-seller">Freshners and repellents</button>
+                                    <button data-filter=".top-featured">Detergents and Fabric Care</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row special-list">
+                        <div class="col-lg-3 col-md-6 special-grid soft-drinks ">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/harpic-power-plus-disinfectant-toilet-cleaner-original.jpg"
+                                        class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+                                        </ul>
+                                        <button class="harpic btn hvr-hover" data-price="150"
+                                            data-product="Harpic Toilet Cleaner" onclick="addToCart(this);"> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Harpic Toilet Cleaner </h4>
+                                    <h5>170g- Rs 150 </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid soft-drinks">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="new">New</p>
+                                    </div>
+                                    <img src="images/vim-dishwash-liquid-gel-lemon.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+
+                                        </ul>
+                                        <button class="vim btn hvr-hover" data-price="410"
+                                            data-product="Vim Dishwash Liquid" onclick="addToCart(this);"> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Vim Dishwash Liquid</h4>
+                                    <h5> 1.8L - RS 410 </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/hit-cockroach-killer-spray.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+
+                                        </ul>
+                                        <button class="hit btn hvr-hover" data-price="203"
+                                            data-product="Hit - Cockroach Killer Spray" onclick="addToCart(this);"> Add
+                                            to Cart </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Hit - Cockroach Killer Spray</h4>
+                                    <h5> 400mL - Rs 203</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 special-grid best-seller">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/allout.jpg" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+
+                                        </ul>
+                                        <button class="allout btn hvr-hover" data-price="150"
+                                            data-product="Allout Musquito Auto Repellent" onclick="addToCart(this);">
+                                            Add to Cart </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Allout Musquito Auto Repellent</h4>
+                                    <h4>3 pcs (1 Machine + 2 Refills) </h4>
+
+                                    <h5> Rs 150</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="sale">Sale</p>
+                                    </div>
+                                    <img src="images/ariel-complete-detergent-washing-powder-value-pack.jpg"
+                                        class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+
+                                        </ul>
+                                        <button class="ariel btn hvr-hover" data-price="686"
+                                            data-product="Ariel Detergent Washing Powder" onclick="addToCart(this);">
+                                            Add to Cart </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Ariel Detergent Washing Powder </h4>
+                                    <h5> 4kg - Rs 686</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-6 special-grid top-featured">
+                            <div class="products-single fix a">
+                                <div class="box-img-hover">
+                                    <div class="type-lb">
+                                        <p class="new">New</p>
+                                    </div>
+                                    <img src="images/comfort-after-wash-fabric-conditioner-lily-fresh.jpg"
+                                        class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="/shop" data-toggle="tooltip" data-placement="right"
+                                                    title="View"><i class="fas fa-eye"></i></a></li>
+
+                                        </ul>
+                                        <button class="comfort btn hvr-hover" data-price="401" data-product="Comfort Fabric"
+                                            onclick="addToCart(this);"> Add to Cart </button>
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>Comfort Fabric</h4>
+                                    <h5> 2L - 401RS </h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <br>
+                <!-- End Products  -->
+                <div class="container">
+                    <h3 class=" text-center m-b-40"> GAIVI -The online Grocery Store </h3>
+                    <p class="m-b-20">
+                        Did you ever imagine that the freshest of fruits and vegetables, top quality pulses and food
+                        grains, dairy products and hundreds of branded items could be handpicked and delivered to your
+                        home, all at the click of a button?
+                    <p class="m-b-20">
+                        India’s first comprehensive online megastore, brings a whopping 20000+ products with more than
+                        1000 brands, to over 4 million happy customers. From household cleaning products to beauty and
+                        makeup, GAIVI has everything you need for your daily needs. Gaivi is convenience personified
+                        We’ve taken away all the stress associated with shopping for daily essentials, and you can now
+                        order all your household products and even buy groceries online without travelling long
+                        distances or standing in serpentine queues. Add to this the convenience of finding all your
+                        requirements at one single source, along with great savings, and you will realize that Gaivi-
+                        India’s largest online supermarket, has revolutionized the way India shops for groceries. Online
+                        grocery shopping has never been easier. Need things fresh? Whether it’s fruits and vegetables or
+                        dairy and meat, we have this covered as well! Get fresh eggs, meat, fish and more online at your
+                        convenience. Hassle-free Home Delivery options
+
+                        We deliver to 25 cities across India and maintain excellent delivery times, ensuring that all
+                        your products from groceries to snacks branded foods reach you in time.
+
+                        Slotted Delivery: Pick the most convenient delivery slot to have your grocery delivered. From
+                        early morning delivery for early birds, to late-night delivery for people who work the late
+                        shift, GAIVI caters to every schedule.
+                        Express Delivery: This super useful service can be availed by customers in cities like
+                        Bangalore, Mumbai, Pune, Chennai, Kolkata, Hyderabad and Delhi-NCR in which we deliver your
+                        orders to your doorstep in 90 Minutes.
+                        BB Specialty stores: Missed out on buying that essential item from your favorite neighborhood
+                        store for tonight’s party? We’ll deliver it for you! From bakery, sweets and meat to flowers and
+                        chocolates, we deliver your order in 90 minutes, through a special arrangement with a nearby
+                        specialty store, verified by us
+                    </p>
+
+                    </p>
+                </div>
+                <br>
+                <br>
+                <!-- Start Footer  -->
+                <footer>
+                    <div class="footer-main">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="footer-top-box">
+                                        <h3>Business Time</h3>
+                                        <ul class="list-time">
+                                            <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                            <li>Saturday: 10.00am to 08.00pm</li>
+                                            <li>Sunday: <span>Closed</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="footer-top-box">
+                                        <h3>Social Media</h3>
+                                        <p>Connect us </p>
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="footer-link">
+                                        <h4>Information</h4>
+                                        <ul>
+                                            <li><a href="/about">About Us</a></li>
+                                            <li><a href="#">Customer Service</a></li>
+                                            <li><a href="/sitemaps.xml">Our Sitemap</a></li>
+                                            <li><a href="#">Terms &amp; Conditions</a></li>
+                                            <li><a href="#">Privacy Policy</a></li>
+                                            <li><a href="#">Delivery Information</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="footer-link-contact">
+                                        <h4>Contact Us</h4>
+                                        <ul>
+                                            <li>
+                                                <p><i class="fas fa-map-marker-alt"></i>Address: Education Hub
+                                                    <br>Kevdi,<br> Diu,362520
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p><i class="fas fa-phone-square"></i>Phone: <a
+                                                        href="tel:+1-888705770">+91 9799022427</a></p>
+                                            </li>
+                                            <li>
+                                                <p><i class="fas fa-envelope"></i>Email: <a
+                                                        href="mailto:contactinfo@gmail.com">ishant0601.bisen@gmail.com</a></p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End Footer  -->
+
+                <!-- Start copyright  -->
+                <div class="footer-copyright">
+                    <p class="footer-company">All Rights Reserved. &copy; 2022 <a href="#">GAIVI</a> <br> Design By :
+                        Ishant Bisen
+                    </p>
+                </div>
+                <!-- End copyright  -->
+
+                <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+                <!-- ALL JS FILES -->
+                <script src="js/jquery-3.2.1.min.js"></script>
+                <script src="js/popper.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <!-- ALL PLUGINS -->
+                <script src="js/jquery.superslides.min.js"></script>
+                <script src="js/bootstrap-select.js"></script>
+                <script src="js/inewsticker.js"></script>
+                <script src="js/bootsnav.js."></script>
+                <script src="js/images-loded.min.js"></script>
+                <script src="js/isotope.min.js"></script>
+                <script src="js/owl.carousel.min.js"></script>
+                <script src="js/baguetteBox.min.js"></script>
+                <script src="js/form-validator.min.js"></script>
+                <script src="js/contact-form-script.js"></script>
+                <script src="js/custom.js"></script>
+</body>
+
+</html>
